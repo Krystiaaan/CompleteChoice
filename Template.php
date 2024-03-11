@@ -2,43 +2,31 @@
 
 require_once "Page.php";
 
-class Index extends Page{
+class Template extends Page{
 
     protected function __construct()
     {
         parent::__construct();
     }
-
-
-
     protected function getViewData(): array
     {
         return array();
     }
-
-
     protected function generateView(): void{
         $data = $this->getViewData();
         $this->generatePageHeader("Complete Choice");
-        echo <<< EOT
-        
-EOT;
+
         $this->generatePageFooter();
     }
-
-
-
     protected function processReceivedData(): void
     {
 
     }
 
-
-
     public static function main(): void 
     {
         try{
-            $page = new Index();
+            $page = new Template();
             $page->processReceivedData();
             $page->generateView();
         }catch(Exception $e){
@@ -48,4 +36,4 @@ EOT;
     }
 }
 
-Index::main();
+Template::main();
