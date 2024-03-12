@@ -1,0 +1,22 @@
+.userNavUl {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 4.5rem;
+    background-color: lightgreen;
+    list-style-type: none;
+}
+
+.userNavLi {
+    font-size: 1.5em;
+}
+
+.catNavUl {
+    margin-top: -1rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 3.5rem;
+    background-color: lightblue;
+    list-style-type: none;
+}
