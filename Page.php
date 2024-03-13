@@ -8,7 +8,7 @@ abstract class Page {
         error_reporting(E_ALL);
 
 
-        $this->_db = new MySQLi("localhost", "root", "", "");
+        $this->_db = new MySQLi("localhost", "root", "", "completechoice");
 
 
         if(mysqli_connect_errno()){

@@ -11,20 +11,50 @@ class Index extends Page{
         parent::__construct();
     }
 
-
+    protected function printItems($id, $name, $beschreibung, $preis, $kategorie, $lagerbestand, $bild): void {
+        echo <<< PRINT
+        <div class="IndexDivItems">
+            <h1>$name</h1>
+            <p>$beschreibung</p>
+            <p>$preis</p>
+            <p>$kategorie</p>
+            <p>$lagerbestand</p>
+PRINT;
+        echo '<img src="data:image/jpeg;base64,'.base64_encode($bild).'" alt="Produktbild"/>';
+        echo "</div>";
+    }
 
     protected function getViewData(): array
     {
-        return array();
+        $sqlSelect = "SELECT * FROM produkte";
+
+        $recordSet = $this->_db->query($sqlSelect);
+
+        $record = $recordSet->fetch_assoc();
+        $result = array();
+
+        while($record){
+            $result[] = $record;
+            $record = $recordSet->fetch_assoc();
+        }
+        $recordSet->close();
+        return $result;
     }
 
 
     protected function generateView(): void{
         $data = $this->getViewData();
         $this->generatePageHeader("Complete Choice");
-        echo <<< EOT
-        
-EOT;
+//        var_dump($data);
+        echo "<body>";
+        echo "<section>";
+
+        foreach ($data as $item){
+            $this->printItems($item["Produkt_ID"], $item["Name"], $item["Beschreibung"], $item["Preis"], $item["Kategorie"], $item["Lagerbestand"], $item["Bild"]);
+        }
+
+        echo "</section>";
+        echo "</body>";
         $this->generatePageFooter();
     }
 
