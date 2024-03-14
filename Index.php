@@ -20,7 +20,12 @@ class Index extends Page{
             <p>$kategorie</p>
             <p>$lagerbestand</p>
 PRINT;
-        echo '<img src="data:image/jpeg;base64,'.base64_encode($bild).'" alt="Produktbild"/>';
+        if($bild !== null){
+            echo '<img src="data:image/jpeg;base64,'.base64_encode($bild).'" alt="Produktbild"/>';
+        }else{
+            echo '<p>Kein Bild verfügbar</p>';
+        }
+        
         echo "</div>";
     }
 
@@ -44,21 +49,32 @@ PRINT;
 
     protected function generateView(): void{
         $data = $this->getViewData();
-        $this->generatePageHeader("Complete Choice");
+        $this->generatePageHeader("Complete Choice", "js/popup.js");
 //        var_dump($data);
         echo "<body>";
-        echo "<section>";
+        echo "<section class='product-section'>";
+        echo "<div class='product-container'>";
 
         foreach ($data as $item){
+            echo "<div class = 'product-column'>";
             $this->printItems($item["Produkt_ID"], $item["Name"], $item["Beschreibung"], $item["Preis"], $item["Kategorie"], $item["Lagerbestand"], $item["Bild"]);
+            echo "</div>";
         }
-
-        echo "</section>";
+        echo "</div>";
+        
+    echo "<div id='popup' class='popup'>";
+    echo "<div class='popup-content'>";
+    echo "<span class='close'>&times;</span>";
+    echo "<div id='popup-content'>";
+    echo "</div>";
+    echo "</div>";
+      echo "</section>";
         echo "</body>";
         $this->generatePageFooter();
     }
 
 
+  
 
     protected function processReceivedData(): void
     {

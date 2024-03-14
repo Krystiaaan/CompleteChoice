@@ -24,3 +24,43 @@
 .IndexDivItems:hover {
     cursor: pointer;
 }
+.product-container {
+    display: flex; 
+    flex-wrap: wrap; 
+    border: 1px solid #ccc; 
+}
+
+.product-column {
+    width: 25%;
+    padding: 10px; 
+    box-sizing: border-box; 
+    border: 1px solid #ccc; 
+}
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1000;
+  }
+  
+  .popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
