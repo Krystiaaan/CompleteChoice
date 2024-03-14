@@ -46,6 +46,8 @@ FORM;
     }
     protected function processReceivedData(): void
     {
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
         if(isset($_POST['name']) && isset($_POST['beschreibung']) && isset($_POST['preis']) && isset($_POST['kategorie']) && isset($_POST['lagerbestand'])) {
             $name = $_POST['name'];
             $beschreibung = $_POST['beschreibung'];
@@ -75,7 +77,12 @@ FORM;
 
             // Verbindung schließen
             $stmt->close();
+          } else {
+            echo "Formulardaten sind nicht vollständig.";
         }
+    } else {
+        echo "Das Formular wurde nicht gesendet.";
+    }
 
     }
 
