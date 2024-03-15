@@ -49,10 +49,13 @@ CARTFORM;
     {
         if(isset($_SESSION["id"])) {
             $nutzerId = $_SESSION["id"];
-//            $sqlSelect = "SELECT * FROM warenkorb_positionen inner join benutzer inner join warenkorb inner join produkte WHERE warenkorb.Benutzer_ID = '$nutzerId' group by warenkorb_positionen.Menge";
-            $sqlSelect = "SELECT * FROM Produkte
-        INNER JOIN Benutzer ON Produkte.Verkäufer_ID = Benutzer.Benutzer_ID
-        LEFT JOIN Warenkorb_Positionen ON Produkte.Produkt_ID = Warenkorb_Positionen.Produkt_ID";
+
+            $sqlSelect = "SELECT * FROM Warenkorb
+        INNER JOIN Benutzer ON Warenkorb.Benutzer_ID = Benutzer.Benutzer_ID
+        LEFT JOIN Warenkorb_Positionen ON Warenkorb.Warenkorb_ID = Warenkorb_Positionen.Warenkorb_ID
+        INNER JOIN Produkte ON Warenkorb_Positionen.Produkt_ID = Produkte.Produkt_ID
+        WHERE Warenkorb.Benutzer_ID = $nutzerId";
+
             $recordSet = $this->_db->query($sqlSelect);
 
             $record = $recordSet->fetch_assoc();
@@ -68,17 +71,12 @@ CARTFORM;
 
         if(isset($_SESSION["tempUserId"])) {
             $nutzerId = $_SESSION["tempUserId"];
-//            $sqlSelect = "SELECT * FROM vorläufige_benutzer_warenkorb_positionen inner join vorläufige_benutzer inner join vorläufige_benutzer_warenkorb inner join produkte WHERE vorläufige_benutzer_warenkorb.Vorläufiger_Benutzer_ID = '$nutzerId' group by Vorläufige_Benutzer_Warenkorb_Positionen.Menge";
-            $sqlSelect = "SELECT *  FROM 
-                    Vorläufige_Benutzer_Warenkorb_Positionen vbp
-                INNER JOIN 
-                    Vorläufige_Benutzer_Warenkorb vbw ON vbp.Warenkorb_ID = vbw.Warenkorb_ID
-                INNER JOIN 
-                    Vorläufige_Benutzer vb ON vbw.Vorläufiger_Benutzer_ID = vb.Vorläufiger_Benutzer_ID
-                INNER JOIN 
-                    Produkte p ON vbp.Produkt_ID = p.Produkt_ID
-                WHERE 
-                    vb.Vorläufiger_Benutzer_ID = $nutzerId";
+
+            $sqlSelect = "SELECT * FROM Vorläufige_Benutzer_Warenkorb
+        INNER JOIN Vorläufige_Benutzer ON Vorläufige_Benutzer_Warenkorb.Vorläufiger_Benutzer_ID = Vorläufige_Benutzer.Vorläufiger_Benutzer_ID
+        INNER JOIN Vorläufige_Benutzer_Warenkorb_Positionen ON Vorläufige_Benutzer_Warenkorb.Warenkorb_ID = Vorläufige_Benutzer_Warenkorb_Positionen.Warenkorb_ID
+        INNER JOIN Produkte ON Vorläufige_Benutzer_Warenkorb_Positionen.Produkt_ID = Produkte.Produkt_ID
+        WHERE Vorläufige_Benutzer_Warenkorb.Vorläufiger_Benutzer_ID = $nutzerId";
 
             $recordSet = $this->_db->query($sqlSelect);
 
@@ -103,8 +101,6 @@ CARTFORM;
         echo "<a href='Index.php'>Zurück</a>";
         echo "<body>";
         echo "<section>";
-
-
 
         foreach ($data as $item){
             $this->printItems($item["Produkt_ID"], $item["Name"], $item["Beschreibung"], $item["Preis"], $item["Kategorie"], $item["Lagerbestand"], $item["Bild"], $item["Menge"]);
