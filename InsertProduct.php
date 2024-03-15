@@ -46,15 +46,14 @@ FORM;
     }
     protected function processReceivedData(): void
     {
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-
-        if(isset($_POST['name']) && isset($_POST['beschreibung']) && isset($_POST['preis']) && isset($_POST['kategorie']) && isset($_POST['lagerbestand'])) {
+        session_start();
+       if(isset($_POST['name']) && isset($_POST['beschreibung']) && isset($_POST['preis']) && isset($_POST['kategorie']) && isset($_POST['lagerbestand']) && isset($_SESSION["id"])) {
             $name = $_POST['name'];
             $beschreibung = $_POST['beschreibung'];
             $preis = $_POST['preis'];
             $kategorie = $_POST['kategorie'];
             $lagerbestand = $_POST['lagerbestand'];
-            $verkaufer_id = 1;
+            $verkaufer_id = $_SESSION["id"];
 
             // Bild verarbeiten
             $bild = file_get_contents($_FILES['bild']['tmp_name']);
@@ -77,13 +76,7 @@ FORM;
 
             // Verbindung schließen
             $stmt->close();
-          } else {
-            echo "Formulardaten sind nicht vollständig.";
-        }
-    } else {
-        echo "Das Formular wurde nicht gesendet.";
-    }
-
+          }
     }
 
     public static function main(): void 
