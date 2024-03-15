@@ -14,9 +14,10 @@ class Register extends Page{
     }
     protected function generateView(): void{
         $data = $this->getViewData();
-        $this->generatePageHeader("Complete Choice");
+        $this->generatePageHeader("Complete Choice Register");
 
         echo <<< EOT
+        <a href="Index.php">Home</a>
         <h2>Registrieren sie Sich.</h2>
         <form action="Register.php" method="post">
 
