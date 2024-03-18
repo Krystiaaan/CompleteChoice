@@ -4,7 +4,7 @@ require_once "Page.php";
 require_once "parts/nav/userNav.php";
 require_once "parts/nav/CatNav.php";
 
-class showByCategory extends Page{
+class Verkaufer extends Page{
 
     protected function __construct()
     {
@@ -13,9 +13,9 @@ class showByCategory extends Page{
 
     protected function getViewData(): array
     {
-        if(isset($_GET["cat"])){
-            $cat = $this->_db->real_escape_string($_GET["cat"]);
-            $sqlSelect = "SELECT * FROM produkte inner join benutzer ON produkte.Verkäufer_ID = benutzer.Benutzer_ID where Kategorie = '$cat'";
+        if(isset($_GET["seller"])){
+            $seller = $this->_db->real_escape_string($_GET["seller"]);
+            $sqlSelect = "SELECT * FROM produkte inner join benutzer ON produkte.Verkäufer_ID = benutzer.Benutzer_ID where benutzer.Email = '$seller'";
 
             $recordSet = $this->_db->query($sqlSelect);
 
@@ -29,10 +29,7 @@ class showByCategory extends Page{
             $recordSet->close();
             return $result;
         }
-        else {
-            header("Location: Index.php");
-            exit();
-        }
+        return array();
     }
     protected function generateView(): void{
         $data = $this->getViewData();
@@ -68,7 +65,7 @@ class showByCategory extends Page{
     public static function main(): void 
     {
         try{
-            $page = new showByCategory();
+            $page = new Verkaufer();
             $page->processReceivedData();
             $page->generateView();
         }catch(Exception $e){
@@ -78,4 +75,4 @@ class showByCategory extends Page{
     }
 }
 
-showByCategory::main();
+Verkaufer::main();

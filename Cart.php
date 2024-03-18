@@ -11,7 +11,7 @@ class Cart extends Page{
         parent::__construct();
     }
 
-    protected function printItems($id, $name, $beschreibung, $preis, $kategorie, $lagerbestand, $bild, $menge): void {
+    protected function printCartItems($id, $name, $beschreibung, $preis, $kategorie, $lagerbestand, $bild, $menge, $verkaufer): void {
         echo <<< PRINT
         <div class="IndexDivItems">
             <h1>$name</h1>
@@ -19,6 +19,7 @@ class Cart extends Page{
             <p><b>Preis:</b> $preis</p>
             <p><b>Kategorie:</b> $kategorie</p>
             <p><b>Lagerbestand:</b> $lagerbestand</p>
+<p><b>Verkäufer: </b><a href="Verkaufer.php?seller=$verkaufer"> $verkaufer</a></p>
 PRINT;
         echo '<img src="data:image/jpeg;base64,'.base64_encode($bild).'" alt="Produktbild"/>';
         echo <<< REMOVEITEMS1
@@ -56,6 +57,7 @@ CARTFORM;
         INNER JOIN Benutzer ON Warenkorb.Benutzer_ID = Benutzer.Benutzer_ID
         LEFT JOIN Warenkorb_Positionen ON Warenkorb.Warenkorb_ID = Warenkorb_Positionen.Warenkorb_ID
         INNER JOIN Produkte ON Warenkorb_Positionen.Produkt_ID = Produkte.Produkt_ID
+        INNER JOIN Benutzer AS Verkäufer ON Produkte.Verkäufer_ID = Verkäufer.Benutzer_ID
         WHERE Warenkorb.Benutzer_ID = $nutzerId";
 
             $recordSet = $this->_db->query($sqlSelect);
@@ -78,6 +80,7 @@ CARTFORM;
         INNER JOIN Vorläufige_Benutzer ON Vorläufige_Benutzer_Warenkorb.Vorläufiger_Benutzer_ID = Vorläufige_Benutzer.Vorläufiger_Benutzer_ID
         INNER JOIN Vorläufige_Benutzer_Warenkorb_Positionen ON Vorläufige_Benutzer_Warenkorb.Warenkorb_ID = Vorläufige_Benutzer_Warenkorb_Positionen.Warenkorb_ID
         INNER JOIN Produkte ON Vorläufige_Benutzer_Warenkorb_Positionen.Produkt_ID = Produkte.Produkt_ID
+        INNER JOIN Benutzer AS Verkäufer ON Produkte.Verkäufer_ID = Verkäufer.Benutzer_ID
         WHERE Vorläufige_Benutzer_Warenkorb.Vorläufiger_Benutzer_ID = $nutzerId";
 
             $recordSet = $this->_db->query($sqlSelect);
@@ -105,7 +108,7 @@ CARTFORM;
         echo "<section>";
 
         foreach ($data as $item){
-            $this->printItems($item["Produkt_ID"], $item["Name"], $item["Beschreibung"], $item["Preis"], $item["Kategorie"], $item["Lagerbestand"], $item["Bild"], $item["Menge"]);
+            $this->printCartItems($item["Produkt_ID"], $item["Name"], $item["Beschreibung"], $item["Preis"], $item["Kategorie"], $item["Lagerbestand"], $item["Bild"], $item["Menge"], $item["Email"]);
         }
 
         echo "</section>";
