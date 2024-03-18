@@ -53,11 +53,11 @@ class Search {
             livesearch.appendChild(ListItem);
             livesearch.style.border = "1px solid #A5ACB2";
 
-            let pTag = document.createElement("p");
-            pTag.innerText = item.Name;
+            // let pTag = document.createElement("p");
+            // pTag.innerText = item.Name;
 
-            let searchRes = document.getElementById("searchRes");
-            searchRes.appendChild(pTag);
+            // let searchRes = document.getElementById("searchRes");
+            // searchRes.appendChild(pTag);
 
         }
     }

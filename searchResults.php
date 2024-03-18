@@ -1,6 +1,8 @@
 <?php declare(strict_types=1);
-
 require_once "Page.php";
+require_once "parts/nav/userNav.php";
+require_once "parts/nav/CatNav.php";
+
 
 class searchResults extends Page{
 
@@ -12,7 +14,7 @@ class searchResults extends Page{
     {
         if (isset($_GET["suche"])) {
         $search = $_GET["suche"];
-        $sql = "SELECT Produkt_ID, Name, Beschreibung, Preis, Kategorie, Lagerbestand, Verkäufer_ID FROM produkte WHERE Produkt_ID ='$search'";
+        $sql = "SELECT * FROM produkte inner join benutzer ON produkte.Verkäufer_ID = benutzer.Benutzer_ID WHERE Produkt_ID ='$search'";
 
         $recordSet = $this->_db->query($sql);
 
@@ -36,7 +38,7 @@ class searchResults extends Page{
         $this->generatePageHeader("Complete Choice", "js/suche.js");
         echo "<div id ='searchRes'>";
         foreach($data as $item){
-            echo $item["Name"];
+            $this->printItems($item["Produkt_ID"],$item["Name"],$item["Beschreibung"],$item["Preis"],$item["Kategorie"],$item["Lagerbestand"],$item["Bild"],$item["Email"]);
             
         }
         echo"</div>";
