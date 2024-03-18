@@ -53,7 +53,7 @@ CARTFORM;
 
     protected function generateView(): void{
         $data = $this->getViewData();
-        $this->generatePageHeader("Complete Choice", "js/popup.js");
+        $this->generatePageHeader("Complete Choice", "js/suche.js");
 //        var_dump($data);
         echo "<body>";
         echo "<section class='product-section'>";
