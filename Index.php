@@ -19,7 +19,7 @@ class Index extends Page{
             <p><b>Preis:</b> $preis</p>
             <p><b>Kategorie:</b> $kategorie</p>
             <p><b>Lagerbestand:</b> $lagerbestand</p>
-            <p><b>Verkäufer eMail:</b> $verkaufer</p>
+            <p><b>Verkäufer: </b><a href="Verkaufer.php?seller=$verkaufer"> $verkaufer</a></p>
 PRINT;
         echo '<img src="data:image/jpeg;base64,'.base64_encode($bild).'" alt="Produktbild"/>';
         echo <<< CARTFORM

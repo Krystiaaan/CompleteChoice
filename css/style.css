@@ -81,9 +81,10 @@ nav ul li a {
 }
 
 
-.IndexDivItems:hover {
-    cursor: pointer;
-}
+/*.IndexDivItems:hover {*/
+/*    cursor: pointer;*/
+/*}*/
+
 .product-container {
     display: flex; 
     flex-wrap: wrap; 
