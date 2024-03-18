@@ -11,27 +11,27 @@ class Index extends Page{
         parent::__construct();
     }
 
-    protected function printItems($id, $name, $beschreibung, $preis, $kategorie, $lagerbestand, $bild, $verkaufer): void {
-        echo <<< PRINT
-        <div class="IndexDivItems">
-            <h1>$name</h1>
-            <p><b>Beschreibung:</b> $beschreibung</p>
-            <p><b>Preis:</b> $preis</p>
-            <p><b>Kategorie:</b> $kategorie</p>
-            <p><b>Lagerbestand:</b> $lagerbestand</p>
-            <p><b>Verkäufer: </b><a href="Verkaufer.php?seller=$verkaufer"> $verkaufer</a></p>
-PRINT;
-        echo '<img src="data:image/jpeg;base64,'.base64_encode($bild).'" alt="Produktbild"/>';
-        echo <<< CARTFORM
-            <form method="post" action="Index.php">
-            <input type="hidden" name="itemId" value="{$id}">
-            <input type="number" name="anzahlArtikel" required>
-            <input type="submit" value="Zum Warenkorb hinzufügen">
-</form>
-        
-CARTFORM;
-        echo "</div>";
-    }
+//    protected function printItems($id, $name, $beschreibung, $preis, $kategorie, $lagerbestand, $bild, $verkaufer): void {
+//        echo <<< PRINT
+//        <div class="IndexDivItems">
+//            <h1>$name</h1>
+//            <p><b>Beschreibung:</b> $beschreibung</p>
+//            <p><b>Preis:</b> $preis</p>
+//            <p><b>Kategorie:</b> $kategorie</p>
+//            <p><b>Lagerbestand:</b> $lagerbestand</p>
+//            <p><b>Verkäufer: </b><a href="Verkaufer.php?seller=$verkaufer"> $verkaufer</a></p>
+//PRINT;
+//        echo '<img src="data:image/jpeg;base64,'.base64_encode($bild).'" alt="Produktbild"/>';
+//        echo <<< CARTFORM
+//            <form method="post" action="Index.php">
+//            <input type="hidden" name="itemId" value="{$id}">
+//            <input type="number" name="anzahlArtikel" required>
+//            <input type="submit" value="Zum Warenkorb hinzufügen">
+//</form>
+//
+//CARTFORM;
+//        echo "</div>";
+//    }
 
     protected function getViewData(): array
     {

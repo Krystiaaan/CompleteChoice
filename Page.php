@@ -21,6 +21,7 @@ abstract class Page {
     }
 
     protected function printItems($id, $name, $beschreibung, $preis, $kategorie, $lagerbestand, $bild, $verkaufer): void {
+        echo "<script src='js/numberLimit.js'></script>";
         echo <<< PRINT
         <div class="IndexDivItems">
             <h1>$name</h1>
@@ -45,7 +46,7 @@ PRINT;
         echo <<< CARTFORM
             <form method="post" action="Index.php">
             <input type="hidden" name="itemId" value="{$id}">
-            <input type="number" name="anzahlArtikel" required>
+            <input type="number" name="anzahlArtikel" onclick="watch(this)" required>
             <input type="submit" value="Zum Warenkorb hinzufügen">
 </form>
         
