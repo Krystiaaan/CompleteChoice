@@ -4,7 +4,7 @@ require_once "Page.php";
 require_once "parts/nav/userNav.php";
 require_once "parts/nav/CatNav.php";
 
-class Index extends Page{
+class showByCategory extends Page{
 
     protected function __construct()
     {
@@ -32,25 +32,29 @@ PRINT;
 CARTFORM;
         echo "</div>";
     }
-
     protected function getViewData(): array
     {
-        $sqlSelect = "SELECT * FROM produkte inner join benutzer ON produkte.Verkäufer_ID = benutzer.Benutzer_ID";
+        if(isset($_GET["cat"])){
+            $cat = $this->_db->real_escape_string($_GET["cat"]);
+            $sqlSelect = "SELECT * FROM produkte inner join benutzer ON produkte.Verkäufer_ID = benutzer.Benutzer_ID where Kategorie = '$cat'";
 
-        $recordSet = $this->_db->query($sqlSelect);
+            $recordSet = $this->_db->query($sqlSelect);
 
-        $record = $recordSet->fetch_assoc();
-        $result = array();
-
-        while($record){
-            $result[] = $record;
             $record = $recordSet->fetch_assoc();
+            $result = array();
+
+            while($record){
+                $result[] = $record;
+                $record = $recordSet->fetch_assoc();
+            }
+            $recordSet->close();
+            return $result;
         }
-        $recordSet->close();
-        return $result;
+        else {
+            header("Location: Index.php");
+            exit();
+        }
     }
-
-
     protected function generateView(): void{
         $data = $this->getViewData();
         $this->generatePageHeader("Complete Choice", "js/popup.js");
@@ -65,21 +69,17 @@ CARTFORM;
             echo "</div>";
         }
         echo "</div>";
-        
-    echo "<div id='popup' class='popup'>";
-    echo "<div class='popup-content'>";
-    echo "<span class='close'>&times;</span>";
-    echo "<div id='popup-content'>";
-    echo "</div>";
-    echo "</div>";
-      echo "</section>";
+
+        echo "<div id='popup' class='popup'>";
+        echo "<div class='popup-content'>";
+        echo "<span class='close'>&times;</span>";
+        echo "<div id='popup-content'>";
+        echo "</div>";
+        echo "</div>";
+        echo "</section>";
         echo "</body>";
         $this->generatePageFooter();
     }
-
-
-  
-
     protected function processReceivedData(): void
     {
         session_start();
@@ -162,7 +162,7 @@ CARTFORM;
     public static function main(): void 
     {
         try{
-            $page = new Index();
+            $page = new showByCategory();
             $page->processReceivedData();
             $page->generateView();
         }catch(Exception $e){
@@ -172,4 +172,4 @@ CARTFORM;
     }
 }
 
-Index::main();
+showByCategory::main();

@@ -3,9 +3,11 @@ echo <<< NAVHTML
 <div class="container">
     <nav class="nav-box second-nav">
         <ul class="CatNavUl">
-            <li class="catNavLi"><a href="#">Hardware</a></li>
-            <li class="catNavLi"><a href="#">Elektro Artikel</a></li>   
-            <li class="catNavLi"><a href="#">Bücher</a></li>
+            <li class="catNavLi"><a href="Index.php">Alle</a></li>
+            <li class="catNavLi"><a href="ShowByCategory.php?cat=Smartphones">Smartphones</a></li>
+            <li class="catNavLi"><a href="ShowByCategory.php?cat=Hardware">Hardware</a></li>
+            <li class="catNavLi"><a href="ShowByCategory.php?cat=Elektronik">Elektronik</a></li>   
+            <li class="catNavLi"><a href="ShowByCategory.php?cat=Bücher">Bücher</a></li>
             <li class="catNavLiForm">
                 <form class="search-form" action="#" method="get">
                     <input class="search-input" type="text" name="search" placeholder="Suchen">

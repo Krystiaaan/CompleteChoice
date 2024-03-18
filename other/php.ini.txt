@@ -1,0 +1,1 @@
+GD-Bibliothek aktivieren: In php.ini suchen und Semikolon vor extension=gd entfernen

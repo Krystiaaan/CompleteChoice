@@ -1,6 +1,8 @@
 <?php declare(strict_types=1);
 
 require_once "Page.php";
+require_once "parts/nav/userNav.php";
+require_once "parts/nav/CatNav.php";
 
 class Cart extends Page{
 
