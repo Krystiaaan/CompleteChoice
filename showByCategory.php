@@ -21,17 +21,25 @@ class showByCategory extends Page{
             <p><b>Lagerbestand:</b> $lagerbestand</p>
             <p><b>Verkäufer eMail:</b> $verkaufer</p>
 PRINT;
-        echo '<img src="data:image/jpeg;base64,'.base64_encode($bild).'" alt="Produktbild"/>';
-        echo <<< CARTFORM
-            <form method="post" action="Index.php">
+            echo '<img src="data:image/jpeg;base64,'.base64_encode($bild).'" alt="Produktbild"/>';
+        if(isset($_GET["cat"])) {
+            $cat = $this->_db->real_escape_string($_GET["cat"]);
+            echo "<form method='post' action='showByCategory.php?cat=$cat'>";
+        }
+        else {
+            echo "<form method='post' action='Index.php'>";
+        }
+            echo <<< CARTFORM
             <input type="hidden" name="itemId" value="{$id}">
             <input type="number" name="anzahlArtikel" required>
             <input type="submit" value="Zum Warenkorb hinzufügen">
 </form>
         
 CARTFORM;
-        echo "</div>";
-    }
+            echo "</div>";
+        }
+
+
     protected function getViewData(): array
     {
         if(isset($_GET["cat"])){
