@@ -1,5 +1,6 @@
 <?php
 echo <<< NAVHTML
+
 <div class="container">
     <nav class="nav-box second-nav">
         <ul class="CatNavUl">
@@ -9,12 +10,13 @@ echo <<< NAVHTML
             <li class="catNavLi"><a href="ShowByCategory.php?cat=Elektronik">Elektronik</a></li>   
             <li class="catNavLi"><a href="ShowByCategory.php?cat=Bücher">Bücher</a></li>
             <li class="catNavLiForm">
-                <form class="search-form" action="#" method="get">
-                    <input class="search-input" type="text" name="search" placeholder="Suchen">
-                    <button class="search-button" type="submit">Suchen</button>
-                </form>
+
+                    <input class="search-input" id="search-input" type="text" name="search" placeholder="Suchen">
+                    <button class="search-button" type="submit" onclick="search.requestData()">Suchen</button>
+                <div id="livesearch"></div>
             </li>
         </ul>
     </nav>
 </div>
+<script src="js/suche.js"></script>
 NAVHTML;
