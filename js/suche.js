@@ -1,5 +1,6 @@
 
 class Search {
+    
     constructor() {
         this.request = new XMLHttpRequest();
     }
@@ -28,47 +29,41 @@ class Search {
             // Uebertragung laeuft noch
         }
     }
+    
+
 
     process(data) {
         let obj = JSON.parse(data);
         let livesearch = document.getElementById("livesearch");
-
+       
         livesearch.innerHTML = "";
-
-        if (obj.length === 0) {
+        livesearch.style.border = "0px";
+        if(obj.length === 0){
             return;
         }
-
-        let ids = [];
-
-        for (let i = 0; i < obj.length; i++) {
+        let nameGroups = {}
+        for(let i = 0; i< obj.length; i++){
             let item = obj[i];
-            ids.push(item.Produkt_ID);
+            if(!nameGroups[item.Name]){
+                nameGroups[item.Name] = [];
+            }
+            nameGroups[item.Name].push(item.Produkt_ID);
         }
-
-
-        // window.location.href = "searchResults.php?suche=" + ids.join(",");
-
+        for(let name in nameGroups){
+            let ids = nameGroups[name];
+           
+                let ListItem = document.createElement("div");
+                ListItem.textContent = name;
+                ListItem.style.cursor = "pointer";
+    
+                ListItem.addEventListener("click", function () {
+                    window.location.href = "searchResults.php?suche=" + ids.join(",");
+                });
+                livesearch.appendChild(ListItem);
+                livesearch.style.border = "1px solid #A5ACB2";
+            
+        }
     }
-    // process(data) {
-    //     let obj = JSON.parse(data);
-    //     let livesearch = document.getElementById("livesearch");
-    //
-    //     if(obj.length === 0){
-    //         return;
-    //     }
-    //
-    //     let ids = [];
-    //
-    //     for(let i = 0; i < obj.length; i++ ){
-    //         let item = obj[i];
-    //
-    //         ids.push(item.Produkt_ID);
-    //
-    //     }
-    //
-    //     window.location.href = "searchResults.php?suche=" + ids.join(",");
-    // }
 }
 
 let search = new Search();

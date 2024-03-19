@@ -12,54 +12,35 @@ class searchResults extends Page{
     }
     protected function getViewData(): array
     {
-        if (isset($_GET["suche"])) {
-            $search = $_GET["suche"];
-            // Zerlegen Sie die Produkt-IDs, die durch Kommas getrennt sein könnten
-            $searchArray = explode(",", $search);
-            // Erstellen Sie einen Parameter-Platzhalter für jede Produkt-ID
-            $placeholders = implode(",", array_fill(0, count($searchArray), "?"));
-            // Erstellen Sie die SQL-Abfrage mit der IN-Klausel für die Produkt-IDs
-            $sql = "SELECT * FROM produkte INNER JOIN benutzer ON produkte.Verkäufer_ID = benutzer.Benutzer_ID WHERE Produkt_ID IN ($placeholders)";
+    if (isset($_GET["suche"])) {
+        $search = $_GET["suche"];
+        // Zerlegen Sie die Produkt-IDs, die durch Kommas getrennt sein könnten
+        $searchArray = explode(",", $search);
+        // Erstellen Sie einen Parameter-Platzhalter für jede Produkt-ID
+        $placeholders = implode(",", array_fill(0, count($searchArray), "?"));
+        // Erstellen Sie die SQL-Abfrage mit der IN-Klausel für die Produkt-IDs
+        $sql = "SELECT * FROM produkte INNER JOIN benutzer ON produkte.Verkäufer_ID = benutzer.Benutzer_ID WHERE Produkt_ID IN ($placeholders)";
 
-            // Vorbereiten der SQL-Abfrage
-            $stmt = $this->_db->prepare($sql);
+        // Vorbereiten der SQL-Abfrage
+        $stmt = $this->_db->prepare($sql);
 
-            // Dynamisches Binden der Parameter
-            $types = str_repeat("i", count($searchArray)); // "i" für Integer
-            $stmt->bind_param($types, ...$searchArray);
+        // Dynamisches Binden der Parameter
+        $types = str_repeat("i", count($searchArray)); // "i" für Integer
+        $stmt->bind_param($types, ...$searchArray);
 
-            // Ausführen der vorbereiteten Abfrage
-            $stmt->execute();
+        // Ausführen der vorbereiteten Abfrage
+        $stmt->execute();
 
-            // Abrufen der Ergebnisse
-            $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        // Abrufen der Ergebnisse
+        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
-            // Schließen des Statements
-            $stmt->close();
+        // Schließen des Statements
+        $stmt->close();
 
-            return $result;
-        } else {
-            return array();
-        }
-//        if (isset($_GET["suche"])) {
-//        $search = $_GET["suche"];
-//        $sql = "SELECT * FROM produkte inner join benutzer ON produkte.Verkäufer_ID = benutzer.Benutzer_ID WHERE Produkt_ID ='$search'";
-//
-//        $recordSet = $this->_db->query($sql);
-//
-//        $record = $recordSet->fetch_assoc();
-//        $result = array();
-//
-//        while($record){
-//            $result[] = $record;
-//            $record = $recordSet->fetch_assoc();
-//        }
-//
-//        $recordSet->close();
-//        return $result;
-//    } else {
-//        return array();
-//    }
+        return $result;
+    } else {
+        return array();
+    }
     
     }
     protected function generateView(): void{

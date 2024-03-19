@@ -126,3 +126,7 @@ nav ul li a {
     right: 10px;
     cursor: pointer;
   }
+  #livesearch{
+    position: relative;
+    z-index: 1;
+  }
