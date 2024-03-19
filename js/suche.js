@@ -44,20 +44,21 @@ class Search {
         let nameGroups = {}
         for(let i = 0; i< obj.length; i++){
             let item = obj[i];
-            if(!nameGroups[item.Name]){
-                nameGroups[item.Name] = [];
+            let baseName = item.Name.split(" ")[0];
+            if(!nameGroups[baseName]){
+                nameGroups[baseName] = [];
             }
-            nameGroups[item.Name].push(item.Produkt_ID);
+            nameGroups[baseName].push(item.Produkt_ID);
         }
-        for(let name in nameGroups){
-            let ids = nameGroups[name];
-           
+        for(let baseName in nameGroups){
+            let group = nameGroups[baseName];
+        
                 let ListItem = document.createElement("div");
-                ListItem.textContent = name;
+                ListItem.textContent = baseName;
                 ListItem.style.cursor = "pointer";
     
                 ListItem.addEventListener("click", function () {
-                    window.location.href = "searchResults.php?suche=" + ids.join(",");
+                    window.location.href = "searchResults.php?suche=" + group.join(",");
                 });
                 livesearch.appendChild(ListItem);
                 livesearch.style.border = "1px solid #A5ACB2";
