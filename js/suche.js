@@ -31,7 +31,9 @@ class Search {
     }
     
 
-
+    formatName(name) {
+        return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+    }
     process(data) {
         let obj = JSON.parse(data);
         let livesearch = document.getElementById("livesearch");
@@ -44,7 +46,7 @@ class Search {
         let nameGroups = {}
         for(let i = 0; i< obj.length; i++){
             let item = obj[i];
-            let baseName = item.Name.split(" ")[0];
+            let baseName = this.formatName(item.Name.split(" ")[0]);
             if(!nameGroups[baseName]){
                 nameGroups[baseName] = [];
             }
