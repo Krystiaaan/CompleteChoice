@@ -32,35 +32,43 @@ class Search {
     process(data) {
         let obj = JSON.parse(data);
         let livesearch = document.getElementById("livesearch");
-       
+
         livesearch.innerHTML = "";
-        livesearch.style.border = "0px";
-        if(obj.length === 0){
+
+        if (obj.length === 0) {
             return;
         }
 
-        for(let i = 0; i < obj.length; i++ ){
+        let ids = [];
+
+        for (let i = 0; i < obj.length; i++) {
             let item = obj[i];
-            let ListItem = document.createElement("div");
-            ListItem.textContent = item.Name;
-            ListItem.style.cursor = "pointer";
-
-            ListItem.addEventListener("click", function(){
-                console.log("gecklickt" + obj[i]);
-                window.location.href = "searchResults.php?suche=" +item.Produkt_ID;
-                
-            });
-            livesearch.appendChild(ListItem);
-            livesearch.style.border = "1px solid #A5ACB2";
-
-            // let pTag = document.createElement("p");
-            // pTag.innerText = item.Name;
-
-            // let searchRes = document.getElementById("searchRes");
-            // searchRes.appendChild(pTag);
-
+            ids.push(item.Produkt_ID);
         }
+
+
+        // window.location.href = "searchResults.php?suche=" + ids.join(",");
+
     }
+    // process(data) {
+    //     let obj = JSON.parse(data);
+    //     let livesearch = document.getElementById("livesearch");
+    //
+    //     if(obj.length === 0){
+    //         return;
+    //     }
+    //
+    //     let ids = [];
+    //
+    //     for(let i = 0; i < obj.length; i++ ){
+    //         let item = obj[i];
+    //
+    //         ids.push(item.Produkt_ID);
+    //
+    //     }
+    //
+    //     window.location.href = "searchResults.php?suche=" + ids.join(",");
+    // }
 }
 
 let search = new Search();
