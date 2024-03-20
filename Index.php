@@ -53,9 +53,9 @@ class Index extends Page{
 
     protected function generateView(): void{
         $data = $this->getViewData();
-        $this->generatePageHeader("Complete Choice", "js/suche.js");
+        $this->generatePageHeader("Complete Choice", "js/autocomplete.js");
 //        var_dump($data);
-        echo "<body>";
+        echo "<body onload='search.requestData();'>";
         echo "<section class='product-section'>";
         echo "<div class='product-container'>";
 

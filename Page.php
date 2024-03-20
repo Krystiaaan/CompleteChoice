@@ -40,6 +40,10 @@ PRINT;
             $cat = $this->_db->real_escape_string($_GET["cat"]);
             echo "<form method='post' action='showByCategory.php?cat=$cat'>";
         }
+        else if (isset($_GET["suche"])) {
+            $name = $this->_db->real_escape_string($_GET["suche"]);
+            echo "<form method='post' action='showSearch.php?suche=$name'>";
+        }
         else {
             echo "<form method='post' action='Index.php'>";
         }
