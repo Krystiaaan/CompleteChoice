@@ -135,14 +135,7 @@ nav ul li a {
     cursor: pointer;
   }
 
- /*#suggestions {*/
- /*   width: 200px;*/
- /*   height: 30px;*/
- /*   position: relative;*/
- /*   z-index: 1;*/
- /* }*/
-
-#suggestions {
-    color: red;
-    background-color: gold;
-}
+/*#suggestions {*/
+/*    color: red;*/
+/*    background-color: gold;*/
+/*}*/
