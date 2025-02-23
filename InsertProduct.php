@@ -43,7 +43,7 @@ class InsertProduct extends Page{
         <input type="number" id="lagerbestand" name="lagerbestand" required><br><br>
 
         <label for="bild">Bild hochladen:</label><br>
-        <p>Größe: 300 x 600. Nur jpeg, png oder gif.</p>
+        <p>Größe: 300 x 300. Nur jpeg, png oder gif.</p>
         <input type="file" id="bild" name="bild" required><br><br>
 
         <input type="button" value="Vorschau anzeigen" onclick="zeigeVorschau()">
@@ -70,7 +70,7 @@ FORM;
 
                     // Maximale Breite und Höhe des neuen Bildes
                     $max_width = 300; // Neue Breite
-                    $max_height = 600; // Neue Höhe
+                    $max_height = 300; // Neue Höhe
 
                     // Bild verarbeiten
                     $uploaded_image = $_FILES['bild']['tmp_name'];

@@ -15,5 +15,5 @@ function zeigeVorschau() {
             <p><strong>Preis:</strong> ${preis}</p>
             <p><strong>Kategorie:</strong> ${kategorie}</p>
             <p><strong>Lagerbestand:</strong> ${lagerbestand}</p>
-            <img src="${URL.createObjectURL(bild)}" alt="Vorschau Bild" width="300" height="600">`;
+            <img src="${URL.createObjectURL(bild)}" alt="Vorschau Bild" width="300" height="300">`;
 }
