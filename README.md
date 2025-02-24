@@ -7,7 +7,7 @@ Complete Choice ist ein Online-Shop-Projekt, das eine Vielzahl von Funktionen bi
 
 - **Übersicht über alle Artikel**  
   Die Startseite ([Index.php](Index.php)) listet alle verfügbaren Produkte mit Bildern, Beschreibungen, Preisen und weiteren Details auf.
-  ![Alle Artikel](demoIMG/home4Artikel.jpg/)
+  ![Alle Artikel](demoImg/home4Artikel.jpg/)
 
 - **Produktvorschau**  
   Mithilfe der Vorschaufunktion (über [js/insertPreview.js](js/insertPreview.js)) könnt Ihr eine Live-Vorschau Eures Artikels sehen, bevor Ihr ihn zum Verkauf freigebt.
