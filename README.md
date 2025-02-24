@@ -11,24 +11,24 @@ Complete Choice ist ein Online-Shop-Projekt, das eine Vielzahl von Funktionen bi
 
 - **Produktvorschau**  
   Mithilfe der Vorschaufunktion (über [js/insertPreview.js](js/insertPreview.js)) könnt Ihr eine Live-Vorschau Eures Artikels sehen, bevor Ihr ihn zum Verkauf freigebt.
-  ![Produktvorschau](demoIMG/vorschau.jpg)
+  ![Produktvorschau](demoImg/vorschau.jpg)
 
 - **Filtern nach Kategorie**  
   Nutzt die Navigation ([parts/nav/CatNav.php](parts/nav/CatNav.php)), um Produkte nach Kategorien wie z.B. nur Smartphones, Hardware, Elektronik und Bücher anzuzeigen.
-  ![KategorieFilter](demoIMG/nurSmartphones.jpg)
+  ![KategorieFilter](demoImg/nurSmartphones.jpg)
 
 - **Filtern nach Verkäufer**  
   Über die Filterfunktion auf der Seite [Verkaufer.php](Verkaufer.php) könnt Ihr Produkte eines bestimmten Verkäufers anzeigen lassen.
-  ![VerkauferFilter](demoIMG/gleicherVerkaufer.jpg)
+  ![VerkauferFilter](demoImg/gleicherVerkaufer.jpg)
 
 - **Warenkorb**  
   Produkte können über den Warenkorb ([Cart.php](Cart.php)) gesammelt, Mengen angepasst und später bestellt werden.
-  ![Warenkorb](demoIMG/warenkorb.jpg)
+  ![Warenkorb](demoImg/warenkorb.jpg)
 
 - **Suchmöglichkeit**  
   Die Live-Suche wird durch [js/autocomplete.js](js/autocomplete.js) unterstützt und basiert auf der Abfrage in [searchGetJson.php](searchGetJson.php). Dies erlaubt es, gezielt nach Produkten zu suchen.
   
-  ![Suche](demoIMG/Suchergaenzung.jpg)
+  ![Suche](demoImg/Suchergaenzung.jpg)
   
 
 
